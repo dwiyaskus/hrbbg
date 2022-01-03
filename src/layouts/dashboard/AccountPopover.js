@@ -15,21 +15,21 @@ import account from '../../_mocks_/account';
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [
-  {
-    label: 'Home',
-    icon: homeFill,
-    linkTo: '/'
-  },
+  // {
+  //   label: 'Home',
+  //   icon: homeFill,
+  //   linkTo: '/'
+  // },
   {
     label: 'Profile',
     icon: personFill,
     linkTo: '#'
-  },
-  {
-    label: 'Settings',
-    icon: settings2Fill,
-    linkTo: '#'
   }
+  // {
+  //   label: 'Settings',
+  //   icon: settings2Fill,
+  //   linkTo: '#'
+  // }
 ];
 
 // ----------------------------------------------------------------------
@@ -87,7 +87,7 @@ export default function AccountPopover() {
 
         <Divider sx={{ my: 1 }} />
 
-        {MENU_OPTIONS.map((option) => (
+        {/* {MENU_OPTIONS.map((option) => (
           <MenuItem
             key={option.label}
             to={option.linkTo}
@@ -107,7 +107,7 @@ export default function AccountPopover() {
 
             {option.label}
           </MenuItem>
-        ))}
+        ))} */}
 
         <Box sx={{ p: 2, pt: 1.5 }}>
           <Button fullWidth color="inherit" variant="outlined">

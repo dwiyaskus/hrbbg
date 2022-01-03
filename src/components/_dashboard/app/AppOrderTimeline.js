@@ -17,28 +17,28 @@ import { fDateTime } from '../../../utils/formatTime';
 
 const TIMELINES = [
   {
-    title: '1983, orders, $4220',
-    time: faker.date.past(),
+    title: 'Bayar',
+    time: '10 Menit',
     type: 'order1'
   },
   {
-    title: '12 Invoices have been paid',
-    time: faker.date.past(),
+    title: 'Preparation',
+    time: '10 Menit',
     type: 'order2'
   },
   {
-    title: 'Order #37745 from September',
-    time: faker.date.past(),
+    title: 'Cooking',
+    time: '10 Menit',
     type: 'order3'
   },
   {
-    title: 'New order placed #XF-2356',
-    time: faker.date.past(),
+    title: 'Ready & Serve',
+    time: '10 Menit',
     type: 'order4'
   },
   {
-    title: 'New order placed #XF-2346',
-    time: faker.date.past(),
+    title: 'Complete',
+    time: '10 Menit',
     type: 'order5'
   }
 ];
@@ -58,10 +58,11 @@ function OrderItem({ item, isLast }) {
         <TimelineDot
           sx={{
             bgcolor:
-              (type === 'order1' && 'primary.main') ||
-              (type === 'order2' && 'success.main') ||
+              (type === 'order1' && 'info.main') ||
+              (type === 'order2' && 'info.main') ||
               (type === 'order3' && 'info.main') ||
               (type === 'order4' && 'warning.main') ||
+              (type === 'order5' && 'success.main') ||
               'error.main'
           }}
         />
@@ -70,7 +71,7 @@ function OrderItem({ item, isLast }) {
       <TimelineContent>
         <Typography variant="subtitle2">{title}</Typography>
         <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-          {fDateTime(time)}
+          {time}
         </Typography>
       </TimelineContent>
     </TimelineItem>

@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
 // material
-import { Box, Card, Link, Typography, Stack } from '@material-ui/core';
+import { Icon } from '@iconify/react';
+import { Box, Card, Link, Typography, Stack, Button } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
+import plusFill from '@iconify/icons-eva/plus-fill';
 // utils
 import { fCurrency } from '../../../utils/formatNumber';
 //
@@ -57,7 +59,7 @@ export default function ShopProductCard({ product }) {
         </Link>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <ColorPreview colors={colors} />
+          {/* <ColorPreview colors={colors} /> */}
           <Typography variant="subtitle1">
             <Typography
               component="span"
@@ -72,6 +74,14 @@ export default function ShopProductCard({ product }) {
             &nbsp;
             {fCurrency(price)}
           </Typography>
+          <Button
+            variant="contained"
+            component={RouterLink}
+            to=""
+            // startIcon={<Icon icon={plusFill} />}
+          >
+            Add
+          </Button>
         </Stack>
       </Stack>
     </Card>

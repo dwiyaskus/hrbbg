@@ -18,34 +18,25 @@ import {
   Container,
   Typography,
   TableContainer,
-  TablePagination,
-  Box,
-  Grid
+  TablePagination
 } from '@material-ui/core';
 // components
-// import Page from '../components/Page';
-import ScheduleFilled from '@iconify/icons-ant-design/schedule-filled';
-import CheckFilled from '@iconify/icons-ant-design/check-circle-filled';
-import ClockFilled from '@iconify/icons-eva/clock-fill';
-import arrowIosForwardFill from '@iconify/icons-eva/arrow-ios-forward-fill';
+import Page from '../components/Page';
 import Label from '../components/Label';
 import Scrollbar from '../components/Scrollbar';
 import SearchNotFound from '../components/SearchNotFound';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../components/_dashboard/user';
-import { QuickCard } from '../components/_dashboard/app';
 //
 import USERLIST from '../_mocks_/user';
 
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'no', label: 'No', alignRight: false },
-  { id: 'tanggal', label: 'Tanggal Undangan', alignRight: false },
-  { id: 'name', label: 'Nama Sesuai KTP', alignRight: false },
-  { id: 'hp', label: 'Handphone', alignRight: false },
-  { id: 'bb', label: 'Pernah menjadi driver Bluebird', alignRight: false },
-  { id: 'tol', label: 'Pernah menjadi driver taksi online', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
+  { id: 'name', label: 'Menu Name', alignRight: false },
+  { id: 'price', label: 'Price', alignRight: false },
+  { id: 'image', label: 'Image', alignRight: false },
+  { id: 'promo', label: 'Promo', alignRight: false },
+  { id: 'precentage', label: 'Percentage Promo', alignRight: false },
   { id: '' }
 ];
 
@@ -140,86 +131,22 @@ export default function User() {
 
   const isUserNotFound = filteredUsers.length === 0;
 
-  const [showAll, setShowAll] = useState(false);
-
   return (
-    <>
-      <Container maxWidth="xl">
-        <Box sx={{ pb: 5 }}>
-          <Typography variant="h4">Daftar Pelamar</Typography>
-        </Box>
-
-        <Box sx={{ p: 2, textAlign: 'right' }}>
+    <Page title="User | Minimal-UI">
+      <Container>
+        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+          <Typography variant="h4" gutterBottom>
+            Menu
+          </Typography>
           <Button
+            variant="contained"
+            component={RouterLink}
             to="#"
-            size="small"
-            onClick={() => setShowAll(!showAll)}
-            color="inherit"
-            endIcon={<Icon icon={arrowIosForwardFill} />}
+            startIcon={<Icon icon={plusFill} />}
           >
-            {`${showAll ? 'Tutup' : 'Lihat'} Sebagian`}
+            New Menu
           </Button>
-        </Box>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={6} md={3}>
-            <QuickCard
-              title="Lulus, Menunggu NIP"
-              color="#005249"
-              backgroundColor="#C8FACD"
-              total={200000000}
-              icon={CheckFilled}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <QuickCard
-              title="Menunggu Interview"
-              color="#04297A"
-              backgroundColor="#D0F2FF"
-              total={200000000}
-              icon={ClockFilled}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <QuickCard
-              title="Interview"
-              color="#7A4F01"
-              backgroundColor="#FFF7CD"
-              total={200000000}
-              icon={ScheduleFilled}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <QuickCard
-              title="Tidak Lulus"
-              color="#7A0C2E"
-              backgroundColor="#FFE7D9 "
-              total={200000000}
-              icon={ScheduleFilled}
-            />
-          </Grid>
-          {showAll && (
-            <>
-              <Grid item xs={12} sm={6} md={3}>
-                <QuickCard
-                  title="Interview"
-                  color="#7A4F01"
-                  backgroundColor="#FFF7CD"
-                  total={200000000}
-                  icon={ScheduleFilled}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} md={3}>
-                <QuickCard
-                  title="Tidak Lulus"
-                  color="#7A0C2E"
-                  backgroundColor="#FFE7D9 "
-                  total={200000000}
-                  icon={ScheduleFilled}
-                />
-              </Grid>
-            </>
-          )}
-        </Grid>
+        </Stack>
 
         <Card>
           <UserListToolbar
@@ -244,7 +171,7 @@ export default function User() {
                   {filteredUsers
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
-                      const { id, name, hp, status, bb, avatarUrl, tol, no } = row;
+                      const { id, name, role, status, company, avatarUrl, isVerified } = row;
                       const isItemSelected = selected.indexOf(name) !== -1;
 
                       return (
@@ -262,19 +189,23 @@ export default function User() {
                               onChange={(event) => handleClick(event, name)}
                             />
                           </TableCell> */}
-                          <TableCell align="left">{no}</TableCell>
-                          <TableCell align="left"> 23 Agus 2021</TableCell>
-                          <TableCell align="left">{name}</TableCell>
-
-                          <TableCell align="left">{hp}</TableCell>
-                          <TableCell align="left">{bb ? 'Pernah' : 'Tidak Pernah'}</TableCell>
-                          <TableCell align="left">{tol ? 'Pernah' : 'Tidak Pernah'}</TableCell>
+                          <TableCell component="th" scope="row" padding="normal">
+                            <Stack direction="row" alignItems="center" spacing={2}>
+                              {/* <Avatar alt={name} src={avatarUrl} /> */}
+                              <Typography variant="subtitle2" noWrap>
+                                {name}
+                              </Typography>
+                            </Stack>
+                          </TableCell>
+                          <TableCell align="left">{company}</TableCell>
+                          <TableCell align="left">{role}</TableCell>
+                          <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
                           <TableCell align="left">
                             <Label
                               variant="ghost"
-                              color={(status === 'Tidak Lulus' && 'error') || 'success'}
+                              color={(status === 'banned' && 'error') || 'success'}
                             >
-                              {status}
+                              {sentenceCase(status)}
                             </Label>
                           </TableCell>
 
@@ -314,6 +245,6 @@ export default function User() {
           />
         </Card>
       </Container>
-    </>
+    </Page>
   );
 }

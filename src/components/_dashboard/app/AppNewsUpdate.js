@@ -4,8 +4,19 @@ import { Icon } from '@iconify/react';
 import { formatDistance } from 'date-fns';
 import { Link as RouterLink } from 'react-router-dom';
 import arrowIosForwardFill from '@iconify/icons-eva/arrow-ios-forward-fill';
+import deleteOutline from '@iconify/icons-eva/close-outline';
 // material
-import { Box, Stack, Link, Card, Button, Divider, Typography, CardHeader } from '@material-ui/core';
+import {
+  Box,
+  Stack,
+  Link,
+  Card,
+  Button,
+  Divider,
+  Typography,
+  CardHeader,
+  Grid
+} from '@material-ui/core';
 // utils
 import { mockImgCover } from '../../../utils/mockImages';
 //
@@ -29,30 +40,35 @@ NewsItem.propTypes = {
   news: PropTypes.object.isRequired
 };
 
+const Item = ({ title, image }) => (
+  <>
+    <Box
+      component="img"
+      alt={title}
+      src={image}
+      sx={{ width: 48, height: 48, borderRadius: 1.5 }}
+    />
+    <Box sx={{ minWidth: 150 }}>
+      <Link to="#" color="inherit" underline="hover" component={RouterLink}>
+        <Typography variant="subtitle2" noWrap>
+          Nasi Goreng
+        </Typography>
+      </Link>
+      <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
+        Rp. 30.000
+      </Typography>
+    </Box>
+  </>
+);
 function NewsItem({ news }) {
   const { image, title, description, postedAt } = news;
 
   return (
-    <Stack direction="row" alignItems="center" spacing={2}>
-      <Box
-        component="img"
-        alt={title}
-        src={image}
-        sx={{ width: 48, height: 48, borderRadius: 1.5 }}
-      />
-      <Box sx={{ minWidth: 240 }}>
-        <Link to="#" color="inherit" underline="hover" component={RouterLink}>
-          <Typography variant="subtitle2" noWrap>
-            {title}
-          </Typography>
-        </Link>
-        <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-          {description}
-        </Typography>
-      </Box>
-      <Typography variant="caption" sx={{ pr: 3, flexShrink: 0, color: 'text.secondary' }}>
-        {formatDistance(postedAt, new Date())}
-      </Typography>
+    <Stack direction="row" alignItems="center" spacing={2} justifyContent="space-between">
+      <Item title={title} image={image} />
+      <Button variant="text" to="" color="error" sx={{ float: 'right' }}>
+        Remove
+      </Button>
     </Stack>
   );
 }
@@ -60,7 +76,7 @@ function NewsItem({ news }) {
 export default function AppNewsUpdate() {
   return (
     <Card>
-      <CardHeader title="News Update" />
+      {/* <CardHeader title="News Update" /> */}
 
       <Scrollbar>
         <Stack spacing={3} sx={{ p: 3, pr: 0 }}>
@@ -70,9 +86,9 @@ export default function AppNewsUpdate() {
         </Stack>
       </Scrollbar>
 
-      <Divider />
+      {/* <Divider /> */}
 
-      <Box sx={{ p: 2, textAlign: 'right' }}>
+      {/* <Box sx={{ p: 2, textAlign: 'right' }}>
         <Button
           to="#"
           size="small"
@@ -82,7 +98,7 @@ export default function AppNewsUpdate() {
         >
           View all
         </Button>
-      </Box>
+      </Box> */}
     </Card>
   );
 }

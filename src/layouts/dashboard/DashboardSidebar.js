@@ -29,7 +29,7 @@ const AccountStyle = styled('div')(({ theme }) => ({
   alignItems: 'center',
   padding: theme.spacing(2, 2.5),
   borderRadius: theme.shape.borderRadiusSm,
-  backgroundColor: '#2D7DE1'
+  backgroundColor: theme.palette.grey[200]
 }));
 
 // ----------------------------------------------------------------------
@@ -52,31 +52,25 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   const renderContent = (
     <Scrollbar
       sx={{
-        backgroundColor: '#f0f8ff',
         height: '100%',
         '& .simplebar-content': { height: '100%', display: 'flex', flexDirection: 'column' }
       }}
     >
-      <Box sx={{ px: 2.5, py: 3 }}>
-        <Box sx={{ display: 'inline-flex' }}>
-          <div style={{ marginRight: '1em' }}>
-            <Logo />
-          </div>
-          <Typography variant="h6" sx={{ color: '#2D7DE1', alignSelf: 'center' }}>
-            Bluebird Group
-          </Typography>
+      {/* <Box sx={{ px: 2.5, py: 3 }}>
+        <Box component={RouterLink} to="/" sx={{ display: 'inline-flex' }}>
+          <Logo />
         </Box>
-      </Box>
+      </Box> */}
 
-      <Box sx={{ mb: 5, mx: 2.5 }}>
+      <Box sx={{ mb: 2, mx: 2.5, mt: 2 }}>
         <Link underline="none" component={RouterLink} to="#">
           <AccountStyle>
             <Avatar src={account.photoURL} alt="photoURL" />
             <Box sx={{ ml: 2 }}>
-              <Typography variant="subtitle2" sx={{ color: '#fff' }}>
+              <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
                 {account.displayName}
               </Typography>
-              <Typography variant="body2" sx={{ color: '#fff' }}>
+              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                 {account.role}
               </Typography>
             </Box>
@@ -88,7 +82,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
 
       <Box sx={{ flexGrow: 1 }} />
 
-      {/* <Box sx={{ px: 2.5, pb: 3, mt: 10 }}>
+      <Box sx={{ px: 2.5, pb: 3, mt: 10 }}>
         <Stack
           alignItems="center"
           spacing={3}
@@ -108,10 +102,10 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
 
           <Box sx={{ textAlign: 'center' }}>
             <Typography gutterBottom variant="h6">
-              Get more?
+              Butuh bantuan?
             </Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              From only $69
+              cs@coms.co.id
             </Typography>
           </Box>
 
@@ -121,10 +115,10 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
             target="_blank"
             variant="contained"
           >
-            Upgrade to Pro
+            Hubungi
           </Button>
         </Stack>
-      </Box> */}
+      </Box>
     </Scrollbar>
   );
 

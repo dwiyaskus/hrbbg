@@ -6,16 +6,12 @@ import { mockImgAvatar } from '../utils/mockImages';
 // ----------------------------------------------------------------------
 
 const users = [...Array(24)].map((_, index) => ({
-  no: index + 1,
   id: faker.datatype.uuid(),
   avatarUrl: mockImgAvatar(index + 1),
   name: faker.name.findName(),
   company: faker.company.companyName(),
   isVerified: faker.datatype.boolean(),
-  status: sample(['Lulus', 'Tidak Lulus']),
-  hp: '08123456789',
-  bb: faker.datatype.boolean(),
-  tol: faker.datatype.boolean(),
+  status: sample(['active', 'banned']),
   role: sample([
     'Leader',
     'Hr Manager',

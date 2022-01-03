@@ -31,7 +31,7 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-const CHART_DATA = [3, 3, 18, 1, 0, 4];
+const CHART_DATA = [4344, 5435, 1443, 4443];
 
 export default function AppCurrentVisits() {
   const theme = useTheme();
@@ -39,20 +39,11 @@ export default function AppCurrentVisits() {
   const chartOptions = merge(BaseOptionChart(), {
     colors: [
       theme.palette.primary.main,
-      theme.palette.error.main,
-      theme.palette.secondary.main,
-      theme.palette.success.main,
       theme.palette.info.main,
-      theme.palette.grey[900]
+      theme.palette.warning.main,
+      theme.palette.error.main
     ],
-    labels: [
-      'Lulus',
-      'Tidak Lulus',
-      'Undangan Selesai',
-      'Interview',
-      'Menunggu Interview',
-      'Blacklist'
-    ],
+    labels: ['America', 'Asia', 'Europe', 'Africa'],
     stroke: { colors: [theme.palette.background.paper] },
     legend: { floating: true, horizontalAlign: 'center' },
     dataLabels: { enabled: true, dropShadow: { enabled: false } },
@@ -61,7 +52,7 @@ export default function AppCurrentVisits() {
       y: {
         formatter: (seriesName) => fNumber(seriesName),
         title: {
-          formatter: (seriesName) => `${seriesName}`
+          formatter: (seriesName) => `#${seriesName}`
         }
       }
     },
@@ -72,7 +63,7 @@ export default function AppCurrentVisits() {
 
   return (
     <Card>
-      <CardHeader title="Status Pelamar" />
+      <CardHeader title="Current Visits" />
       <ChartWrapperStyle dir="ltr">
         <ReactApexChart type="pie" series={CHART_DATA} options={chartOptions} height={280} />
       </ChartWrapperStyle>

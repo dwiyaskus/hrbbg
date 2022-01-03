@@ -1,6 +1,6 @@
 {
-  "name": "@minimal/material-kit-react",
-  "author": "minimals.cc",
+  "name": "coms",
+  "author": "dwiyaskus.cc",
   "licence": "MIT",
   "version": "1.0.0",
   "private": false,
@@ -8,7 +8,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext .js,.jsx ./src",
+    "lint:fix": "eslint --fix --ext .js,.jsx ./src"
   },
   "eslintConfig": {
     "extends": [

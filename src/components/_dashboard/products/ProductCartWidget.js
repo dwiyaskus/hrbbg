@@ -30,10 +30,13 @@ const RootStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function CartWidget() {
+  const handleSummary = () => {
+    window.location = '/summary';
+  };
   return (
     <RootStyle>
       <Badge showZero badgeContent={0} color="error" max={99}>
-        <Icon icon={shoppingCartFill} width={24} height={24} />
+        <Icon icon={shoppingCartFill} width={24} height={24} onClick={handleSummary} />
       </Badge>
     </RootStyle>
   );
